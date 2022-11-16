@@ -1,0 +1,13 @@
+name: polito
+
+dependencies:
+  - numpy
+  - pandas
+  - matplotlib
+  - scipy
+  - scikit-learn
+  - notebook
+  - nb_conda_kernels
+
+  
+
