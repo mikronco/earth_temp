@@ -8,6 +8,13 @@ dependencies:
   - scikit-learn
   - notebook
   - nb_conda_kernels
+  - xarray
+  - dask
+  - netCDF4
+  - bottleneck
+  - cartopy
+  - seaborn
+
 
   
 
