@@ -16,3 +16,12 @@ def r_squared(y, y_hat):
     r_squared = 1 - residual_sum_squares / total_sum_squares
 
     return r_squared
+
+
+class BaselineRain():
+    def __init__(self):
+        super().__init__()
+
+    def predict(self, x):
+        return x
+    
