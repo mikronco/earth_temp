@@ -1,6 +1,7 @@
 name: polito
 
 dependencies:
+  - python=3.6
   - numpy
   - pandas
   - matplotlib
@@ -14,6 +15,9 @@ dependencies:
   - bottleneck
   - cartopy
   - seaborn
+  - lightgbm
+  - tensorflow
+  - keras
 
 
   
