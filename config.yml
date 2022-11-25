@@ -16,7 +16,7 @@ dependencies:
   - cartopy
   - seaborn
   - lightgbm
-  - tensorflow
+  - tensorflow=2.4
   - keras
 
 

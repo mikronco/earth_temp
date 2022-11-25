@@ -5,8 +5,10 @@ Created on Tue Nov 22 11:41:39 2022
 @author: unknown
 """
 
-from keras.models import Sequential
-from keras.layers import Dense, Dropout
+from keras.models import Sequential, Model
+from keras.layers import Dense, Activation, Conv2D, Input, AveragePooling2D, MaxPooling2D, Flatten, LeakyReLU, Dropout
+
+
 
 
 class FCNNRain():
@@ -49,4 +51,27 @@ class FCNNRain_Dropout_flex():
             model.add(Dropout(dp))
         model.add(Dense(1, activation='sigmoid'))
         return model 
+
+
+
+class CNNStorm():
+    def __init__(self):
+        super().__init__()
+        
+    def initialize(self, input_shape, num_conv_filters, filter_width, conv_activation):
+        conv_net_in = Input(shape=input_shape[1:])
+        conv_net = Conv2D(num_conv_filters, (filter_width, filter_width), padding="same")(conv_net_in)
+        conv_net = Activation(conv_activation)(conv_net)
+        conv_net = AveragePooling2D()(conv_net)
+        conv_net = Conv2D(num_conv_filters * 2, (filter_width, filter_width), padding="same")(conv_net)
+        conv_net = Activation(conv_activation)(conv_net)
+        conv_net = AveragePooling2D()(conv_net)
+        conv_net = Flatten()(conv_net)
+        conv_net = Dense(1)(conv_net)
+        conv_net = Activation("sigmoid")(conv_net)
+        conv_model = Model(conv_net_in, conv_net)
+        
+        return conv_model
+
+
 
