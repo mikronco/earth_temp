@@ -75,3 +75,15 @@ class CNNStorm():
 
 
 
+class CNNenso():
+    def __init__(self):
+        super().__init__()
+        
+    def initialize(self, input_shape, num_conv_filters, filter_width, conv_activation):
+        conv_net_in = Input(shape=input_shape[1:])
+        conv_net = Conv2D(num_conv_filters, (filter_width, filter_width), padding="same")(conv_net_in)
+        conv_net = Activation(conv_activation)(conv_net)
+        conv_net = Flatten()(conv_net)
+        conv_net = Dense(1)(conv_net)
+        conv_model = Model(conv_net_in, conv_net)  
+        return conv_model
