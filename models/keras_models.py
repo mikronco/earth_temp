@@ -6,7 +6,7 @@ Created on Tue Nov 22 11:41:39 2022
 """
 
 from keras.models import Sequential, Model
-from keras.layers import Dense, Activation, Conv2D, Input, AveragePooling2D, MaxPooling2D, Flatten, LeakyReLU, Dropout
+from keras.layers import Dense, Activation, Conv2D, Input, AveragePooling2D, MaxPooling2D, Flatten, LeakyReLU, Dropout, Concatenate
 
 
 
@@ -74,8 +74,7 @@ class CNNStorm():
         return conv_model
 
 
-
-class CNNenso():
+class CNNIce():
     def __init__(self):
         super().__init__()
         
@@ -83,7 +82,38 @@ class CNNenso():
         conv_net_in = Input(shape=input_shape[1:])
         conv_net = Conv2D(num_conv_filters, (filter_width, filter_width), padding="same")(conv_net_in)
         conv_net = Activation(conv_activation)(conv_net)
+        conv_net = AveragePooling2D()(conv_net)
+        conv_net = Conv2D(num_conv_filters * 2, (filter_width, filter_width), padding="same")(conv_net)
+        conv_net = Activation(conv_activation)(conv_net)
+        conv_net = AveragePooling2D()(conv_net)
         conv_net = Flatten()(conv_net)
         conv_net = Dense(1)(conv_net)
-        conv_model = Model(conv_net_in, conv_net)  
+        conv_model = Model(conv_net_in, conv_net)
+        
         return conv_model
+
+
+class CNNIce1():
+    def __init__(self):
+        super().__init__()
+        
+    def initialize(self, img_shape, vec_shape, num_conv_filters, filter_width, conv_activation):
+        conv_net_in = Input(shape=img_shape[1:])
+        vector_input = Input(shape=vec_shape[1:])
+        fc_net = Activation(conv_activation)(vector_input)
+
+        conv_net = Conv2D(num_conv_filters, (filter_width, filter_width), padding="same")(conv_net_in)
+        conv_net = Activation(conv_activation)(conv_net)
+        conv_net = AveragePooling2D()(conv_net)
+        conv_net = Conv2D(num_conv_filters * 2, (filter_width, filter_width), padding="same")(conv_net)
+        conv_net = Activation(conv_activation)(conv_net)
+        conv_net = AveragePooling2D()(conv_net)
+        conv_net = Flatten()(conv_net)
+        concat_layer= Concatenate()([conv_net, fc_net])
+        conv_net = Dense(1)(conv_net)
+
+        conv_model = Model([conv_net_in, vector_input], conv_net)
+        
+        return conv_model
+
+

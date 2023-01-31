@@ -136,3 +136,23 @@ class FeatureExtractor(object):
         # Reshape into a matrix of one column
         X_array = enso_valid.reshape((-1, 1))
         return X_array
+
+
+
+class PreProc():
+
+    def __init__(self):
+        pass
+
+    def scale(self, im, nR, nC):
+        nR0 = im.shape[-3]     # source number of rows 
+        nC0 = im.shape[-2]  # source number of columns 
+        return [[ im[:,int(nR0 * r / nR), int(nC0 * c / nC),:]  
+             for c in range(nC)] for r in range(nR)]
+    
+    def normalize(self, img):
+        out = np.empty_like(img)
+        for i in range(img.shape[-1]):
+            out[:,:,:,i] = (img[:,:,:,i] - img[:,:,:,i].min())/(img[:,:,:,i].max()-img[:,:,:,i].min())
+        
+        return out
