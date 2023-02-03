@@ -8,8 +8,41 @@ Only basic knowledge of statistics is assumed. Some previous experience with cod
 
 ## Description
 
-An in-depth paragraph about your project and overview of use.
+The course is organized in eight notebooks, each of them covers a different topic and task: 
+
+* Forecasting global temperatures and carbon dioxide emissions on a yearly scale. 
+* Detecting burned areas using meteorological variables. 
+* Daily predictions of rain occurrence. 
+* Detecting burned areas using meteorological variables. 
+* Classifying storms. 
+* Daily predictions of temperatures from time series of weather data. 
+* Detecting burned areas using meteorological variables. 
+* Forecasting the ENSO index. 
+* Forecasting sea ice extension. 
+* Detecting vegetation cover with satellites. 
+
+
 
 ## Dependencies
 
-Libraries needed to run the code
+The following packages are needed to run the notebooks: 
+
+* python 3.6
+* numpy
+* pandas
+* matplotlib
+* scipy
+* scikit-learn
+* notebook
+* nb_conda_kernels
+* xarray
+* dask
+* netCDF4
+* bottleneck
+* cartopy
+* seaborn
+* lightgbm
+* tensorflow=2.4
+* keras
+
+It is recommended to create the environment by executing the command: conda env create -f config.yml 
