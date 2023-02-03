@@ -1,6 +1,8 @@
-# Project Title
+# AI for Climate Change 
 
-Simple overview of use/purpose.
+![plot](./imgs/cc_img.jpeg)
+
+ML models can play an important role in tackling several problems connected with the effects of climate change. This reporisory contains some simple examples and applications of ML to toy datasets in the fields of weather hazards, forecasting, land monitoring and temperature projections. 
 
 ## Description
 
